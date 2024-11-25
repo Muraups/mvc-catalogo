@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Catalog</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Music Catalog</h1>
+        <nav>
+            <ul>
+                <li><a href="#albums">Albums</a></li>
+                <li><a href="#artists">Artists</a></li>
+                <li><a href="#genres">Genres</a></li>
+                <li><a href="#tracks">Tracks</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Seção de Albuns -->
+        <section id="albums">
+            <h2>Albums</h2>
+            <div id="album-list"></div>
+            <form id="album-form">
+                <input type="text" id="album-title" placeholder="Album Title" required />
+                <input type="number" id="release-year" placeholder="Release Year" required />
+                <input type="text" id="album-cover" placeholder="Cover Image URL" />
+                <input type="number" id="artist-id" placeholder="Artist ID" required />
+                <button type="submit">Add Album</button>
+            </form>
+        </section>
+
+        <!-- Seção de Artistas -->
+        <section id="artists">
+            <h2>Artists</h2>
+            <div id="artist-list"></div>
+            <form id="artist-form">
+                <input type="text" id="artist-name" placeholder="Artist Name" required />
+                <input type="number" id="genre-id" placeholder="Genre ID" required />
+                <button type="submit">Add Artist</button>
+            </form>
+        </section>
+
+        <!-- Seção de Gêneros -->
+        <section id="genres">
+            <h2>Genres</h2>
+            <div id="genre-list"></div>
+            <form id="genre-form">
+                <input type="text" id="genre-name" placeholder="Genre Name" required />
+                <button type="submit">Add Genre</button>
+            </form>
+        </section>
+
+        <!-- NOVA Seção de Tracks -->
+        <section id="tracks">
+            <h2>Tracks</h2>
+            <ul id="track-list"></ul>
+            <form id="track-form">
+                <input type="text" id="track-title" placeholder="Track Title" required />
+                <input type="number" id="album-id" placeholder="Album ID" required />
+                <button type="submit">Add Track</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Music Catalog</p>
+    </footer>
+
+    <script src="scripts/app.js"></script>
+    <script src="scripts/trackView.js"></script>
+</body>
+</html>

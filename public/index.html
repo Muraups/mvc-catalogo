@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Musical</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h1 {
+      color: #333;
+    }
+    section {
+      margin-bottom: 20px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #ddd;
+      background: #f9f9f9;
+    }
+    li strong {
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>Dashboard Musical</h1>
+
+  <section>
+    <h2>Artistas</h2>
+    <ul id="artist-list"></ul>
+  </section>
+
+  <section>
+    <h2>Álbuns</h2>
+    <ul id="album-list"></ul>
+  </section>
+
+  <section>
+    <h2>Faixas</h2>
+    <ul id="track-list"></ul>
+  </section>
+
+  <section>
+    <h2>Gêneros</h2>
+    <ul id="genre-list"></ul>
+  </section>
+
+  <script>
+    // Função para carregar dados de uma API e renderizar na página
+    function loadData(endpoint, listId, formatter) {
+      fetch(endpoint)
+        .then(response => response.json())
+        .then(data => {
+          const listElement = document.getElementById(listId);
+          listElement.innerHTML = ''; // Limpa a lista antes de renderizar novos itens
+          data.forEach(item => {
+            const listItem = document.createElement('li');
+            listItem.innerHTML = formatter(item);
+            listElement.appendChild(listItem);
+          });
+        })
+        .catch(error => console.error(`Erro ao carregar ${endpoint}:`, error));
+    }
+
+    // Formatação de dados para cada categoria
+    const formatArtist = artist => `
+      <strong>${artist.name}</strong> (Gênero: ${artist.Genre?.name || 'Não especificado'})
+    `;
+    const formatAlbum = album => `
+      <strong>${album.title}</strong> (Artista: ${album.Artist?.name || 'Desconhecido'}, Ano: ${album.release_year || 'Desconhecido'})
+    `;
+    const formatTrack = track => `
+      <strong>${track.title}</strong> 
+      (Álbum: ${track.Album?.title || 'Desconhecido'}, 
+      Duração: ${track.duration ? `${track.duration} minutos` : 'Não informada'})
+    `;
+    const formatGenre = genre => `
+      <strong>${genre.name}</strong>
+    `;
+
+    // Carregar e exibir dados de cada rota
+    loadData('/api/artists', 'artist-list', formatArtist);
+    loadData('/api/albums', 'album-list', formatAlbum);
+    loadData('/api/tracks', 'track-list', formatTrack);
+    loadData('/api/genres', 'genre-list', formatGenre);
+  </script>
+</body>
+</html>

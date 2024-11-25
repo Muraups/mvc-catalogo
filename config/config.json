@@ -1,0 +1,23 @@
+{
+    "development": {
+      "username": "pamubr",
+      "password": "pamubr",
+      "database": "music_catalog",
+      "host": "127.0.0.1",
+      "dialect": "mysql"
+    },
+  "test": {
+    "username": "pamubr",
+    "password": "pamubr",
+    "database": "music_catalog",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "pamubr",
+    "password": "pamubr",
+    "database": "music_catalog",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}

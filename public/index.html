@@ -53,14 +53,22 @@
     <ul id="genre-list"></ul>
   </section>
 
+  <section>
+    <h2>Criar Artista</h2>
+    <form id="artist-form">
+      <input type="text" id="artist-name" placeholder="Nome do artista" required />
+      <input type="number" id="genre-id" placeholder="ID do gênero" required />
+      <button type="submit">Criar</button>
+    </form>
+  </section>
+  
   <script>
-    // Função para carregar dados de uma API e renderizar na página
     function loadData(endpoint, listId, formatter) {
       fetch(endpoint)
         .then(response => response.json())
         .then(data => {
           const listElement = document.getElementById(listId);
-          listElement.innerHTML = ''; // Limpa a lista antes de renderizar novos itens
+          listElement.innerHTML = ''; 
           data.forEach(item => {
             const listItem = document.createElement('li');
             listItem.innerHTML = formatter(item);
@@ -70,7 +78,7 @@
         .catch(error => console.error(`Erro ao carregar ${endpoint}:`, error));
     }
 
-    // Formatação de dados para cada categoria
+  
     const formatArtist = artist => `
       <strong>${artist.name}</strong> (Gênero: ${artist.Genre?.name || 'Não especificado'})
     `;
@@ -86,7 +94,31 @@
       <strong>${genre.name}</strong>
     `;
 
-    // Carregar e exibir dados de cada rota
+    document.getElementById('artist-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = document.getElementById('artist-name').value;
+    const genre_id = document.getElementById('genre-id').value;
+
+    try {
+      const response = await fetch('/api/artists', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, genre_id }),
+      });
+
+      if (response.ok) {
+        alert('Artista criado com sucesso!');
+        loadData('/api/artists', 'artist-list', formatArtist); 
+      } else {
+        const error = await response.json();
+        alert('Erro ao criar artista: ' + error.message);
+      }
+      } catch (error) {
+        console.error('Erro ao enviar dados:', error);
+      }
+    });
+
+
     loadData('/api/artists', 'artist-list', formatArtist);
     loadData('/api/albums', 'album-list', formatAlbum);
     loadData('/api/tracks', 'track-list', formatTrack);

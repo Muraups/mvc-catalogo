@@ -15,21 +15,26 @@ exports.getAllAlbums = async (req, res) => {
 
 exports.createAlbum = async (req, res) => {
     try {
-        const { title, release_year, cover_image, artist_id, genres } = req.body;
-
-        const album = await Album.create({
-            title,
-            release_year,
-            cover_image,
-            artist_id,
+      const { title, release_year, cover_image, artist_id, genres } = req.body;
+  
+      const album = await Album.create({
+        title,
+        release_year,
+        cover_image,
+        artist_id,
+      });
+  
+      // Verifica se `genres` foi passado e associa os gêneros ao álbum
+      if (genres && genres.length) {
+        const genreInstances = await Genre.findAll({
+          where: { id: genres }, // Associa gêneros pelo ID
         });
-
-        if (genres) {
-            await album.addGenres(genres); // Associar gêneros ao álbum
-        }
-
-        res.status(201).json(album);
+        await album.addGenres(genreInstances);
+      }
+  
+      res.status(201).json(album);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+      res.status(500).json({ error: error.message });
     }
-};
+  };
+  

@@ -1,7 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../database/db');
 const Artist = require('./artist');
-const Genre = require('./genre'); // Importa Genre para a associação
 
 const Album = sequelize.define('Album', {
     title: {
@@ -17,8 +16,7 @@ const Album = sequelize.define('Album', {
     },
 });
 
-// Relacionamento: um álbum pertence a um artista e a um gênero
+// Relacionamento: um álbum pertence a um artista
 Album.belongsTo(Artist, { foreignKey: 'artist_id' });
-Album.belongsTo(Genre, { foreignKey: 'genre_id' });
 
 module.exports = Album;

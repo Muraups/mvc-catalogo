@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Artista</title>
+  <script>
+    async function fetchGenres() {
+      try {
+        const response = await fetch('http://localhost:3000/api/genres');
+        const genres = await response.json();
+
+        const genreSelect = document.getElementById('genre_id');
+        genreSelect.innerHTML = ''; // Limpa a lista atual
+
+        genres.forEach(genre => {
+          const option = document.createElement('option');
+          option.value = genre.id;
+          option.textContent = genre.name;
+          genreSelect.appendChild(option);
+        });
+      } catch (error) {
+        console.error('Erro ao carregar os gêneros:', error);
+      }
+    }
+
+    // Chama a função ao carregar a página
+    window.onload = fetchGenres;
+  </script>
+</head>
+<body>
+  <h1>Cadastrar Artista</h1>
+  <form action="http://localhost:3000/api/artists" method="POST">
+    <label for="name">Nome do Artista:</label>
+    <input type="text" id="name" name="name" required>
+    <br><br>
+
+    <label for="genre_id">Gênero Musical:</label>
+    <select id="genre_id" name="genre_id" required>
+      <!-- Os gêneros serão carregados aqui -->
+    </select>
+    <br><br>
+
+    <button type="submit">Cadastrar Artista</button>
+  </form>
+</body>
+</html>

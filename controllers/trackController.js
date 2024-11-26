@@ -12,13 +12,13 @@ exports.getAllTracks = async (req, res) => {
 
 exports.createTrack = async (req, res) => {
     try {
-        const { title, album_id } = req.body;
-        const track = await Track.create({ title, album_id });
-        res.status(201).json(track);
+      const { title, album_id, duration } = req.body;
+      const track = await Track.create({ title, album_id, duration });
+      res.status(201).json(track);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+      res.status(400).json({ error: 'Erro ao criar a faixa: ' + error.message });
     }
-};
+  };  
 
 exports.deleteTrack = async (req, res) => {
     try {

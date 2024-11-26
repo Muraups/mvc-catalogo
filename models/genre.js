@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../database/db');
+const Album = require('./album'); // Importa Genre para a associação
 
 const Genre = sequelize.define('Genre', {
     name: {
@@ -8,4 +9,5 @@ const Genre = sequelize.define('Genre', {
     },
 });
 
-module.exports = Genre; // Exporte o modelo antes de configurar associações
+
+module.exports = Genre; 

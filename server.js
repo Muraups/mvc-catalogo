@@ -15,14 +15,36 @@ app.use(cors());
 const path = require('path');
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Rotas
+
 app.use('/api/albums', albumRoutes);
 app.use('/api/tracks', trackRoutes);
-app.use('/api/artists', artistRoutes); // Adiciona rotas de Artist
-app.use('/api/genres', genreRoutes); // Adiciona rotas de Genre
+app.use('/api/artists', artistRoutes); 
+app.use('/api/genres', genreRoutes); 
+
+// Rotas para servir as páginas HTML
+app.get("/html/artists.html", (req, res) => {
+    res.sendFile(path.join(__dirname, "public/html/artists.html"));
+  });
+  app.get("/html/albums.html", (req, res) => {
+    res.sendFile(path.join(__dirname, "public/html/albums.html"));
+  });
+  app.get("/html/tracks.html", (req, res) => {
+    res.sendFile(path.join(__dirname, "public/html/tracks.html"));
+  });
+  app.get("/html/genres.html", (req, res) => {
+    res.sendFile(path.join(__dirname, "public/html/genres.html"));
+  });
+
+  app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html')); // Envia o arquivo HTML principal
+  });
+  
+  app.get('/artists', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/html/artists.html')); // Envia o arquivo artists.html
+  });
 
 // Rota principal
-app.get('/', (req, res) => {
+/*app.get('/', (req, res) => {
   res.json({
     message: 'Bem-vindo à API de Catálogo de Discos!',
     endpoints: {
@@ -32,11 +54,10 @@ app.get('/', (req, res) => {
       genres: '/api/genres',
     },
   });
-});
+});*/
 
-// Sincroniza banco de dados e inicia o servidor
 sequelize
-  .sync({ alter: true }) // Usar `alter` para atualizar sem recriar tabelas
+  .sync({ alter: true })
   .then(() => {
     console.log('Database synced successfully!');
     app.listen(3000, () => {

@@ -7,13 +7,49 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-    h1 {
+      margin: 0;
+      padding: 0;
+      background: #f3f4f6;
       color: #333;
     }
+    header {
+      background-color: #007bff;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #333;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 15px 20px;
+      display: block;
+      font-weight: bold;
+    }
+    nav a:hover {
+      background-color: #007bff;
+    }
+    main {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
     section {
-      margin-bottom: 20px;
+      margin-bottom: 30px;
+    }
+    h2 {
+      color: #007bff;
+      margin-bottom: 10px;
     }
     ul {
       list-style: none;
@@ -23,60 +59,78 @@
       margin: 10px 0;
       padding: 10px;
       border: 1px solid #ddd;
+      border-radius: 5px;
       background: #f9f9f9;
     }
     li strong {
-      color: #555;
+      color: #333;
     }
-        .btn {
-      background-color: #fff700;
-      color: rgb(0, 0, 0);
+    .btn {
+      background-color: #007bff;
+      color: white;
       padding: 10px 20px;
       border: none;
       border-radius: 5px;
       cursor: pointer;
       text-decoration: none;
       display: inline-block;
+      margin-top: 10px;
     }
-
     .btn:hover {
-      background-color: #ff9500;
+      background-color: #0056b3;
+    }
+    .btn-container {
+      text-align: center;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
-  <h1>Dashboard Musical</h1>
+  <header>
+    <h1>Dashboard Musical</h1>
+  </header>
 
-  <section>
-    <h2>Artistas</h2>
-    <ul id="artist-list"></ul>
-    <a href="/artists" class="btn">Ir para Artistas</a>
-  </section>
+  <nav>
+    <a href="#artists">Artistas</a>
+    <a href="#albums">Álbuns</a>
+    <a href="#tracks">Faixas</a>
+    <a href="#genres">Gêneros</a>
+  </nav>
 
-  <section>
-    <h2>Álbuns</h2>
-    <ul id="album-list"></ul>
-  </section>
+  <main>
+    <section id="artists">
+      <h2>Artistas</h2>
+      <ul id="artist-list"></ul>
+      <div class="btn-container">
+        <a href="/artists" class="btn">Ir para Artistas</a>
+      </div>
+    </section>
 
-  <section>
-    <h2>Faixas</h2>
-    <ul id="track-list"></ul>
-  </section>
+    <section id="albums">
+      <h2>Álbuns</h2>
+      <ul id="album-list"></ul>
+      <div class="btn-container">
+        <a href="/html/albums.html" class="btn">Ir para Álbuns</a>
+      </div>
+    </section>
 
-  <section>
-    <h2>Gêneros</h2>
-    <ul id="genre-list"></ul>
-  </section>
+    <section id="tracks">
+      <h2>Faixas</h2>
+      <ul id="track-list"></ul>
+      <div class="btn-container">
+        <a href="/html/tracks.html" class="btn">Ir para Faixas</a>
+      </div>
+    </section>
 
-  <section>
-    <h2>Criar Artista</h2>
-    <form id="artist-form">
-      <input type="text" id="artist-name" placeholder="Nome do artista" required />
-      <input type="number" id="genre-id" placeholder="ID do gênero" required />
-      <button type="submit">Criar</button>
-    </form>
-  </section>
-  
+    <section id="genres">
+      <h2>Gêneros</h2>
+      <ul id="genre-list"></ul>
+      <div class="btn-container">
+        <a href="/html/genres.html" class="btn">Ir para Gêneros</a>
+      </div>
+    </section>
+  </main>
+
   <script>
     function loadData(endpoint, listId, formatter) {
       fetch(endpoint)
@@ -93,7 +147,6 @@
         .catch(error => console.error(`Erro ao carregar ${endpoint}:`, error));
     }
 
-  
     const formatArtist = artist => `
       <strong>${artist.name}</strong> (Gênero: ${artist.Genre?.name || 'Não especificado'})
     `;
@@ -108,31 +161,6 @@
     const formatGenre = genre => `
       <strong>${genre.name}</strong>
     `;
-
-    document.getElementById('artist-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const name = document.getElementById('artist-name').value;
-    const genre_id = document.getElementById('genre-id').value;
-
-    try {
-      const response = await fetch('/api/artists', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, genre_id }),
-      });
-
-      if (response.ok) {
-        alert('Artista criado com sucesso!');
-        loadData('/api/artists', 'artist-list', formatArtist); 
-      } else {
-        const error = await response.json();
-        alert('Erro ao criar artista: ' + error.message);
-      }
-      } catch (error) {
-        console.error('Erro ao enviar dados:', error);
-      }
-    });
-
 
     loadData('/api/artists', 'artist-list', formatArtist);
     loadData('/api/albums', 'album-list', formatAlbum);

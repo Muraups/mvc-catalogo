@@ -3,7 +3,7 @@ function loadData(endpoint, listId, formatter) {
     .then((response) => response.json())
     .then((data) => {
       const listElement = document.getElementById(listId);
-      listElement.innerHTML = ''; // Limpa a lista antes de preenchê-la
+      listElement.innerHTML = ''; 
       data.forEach((item) => {
         const listItem = document.createElement('li');
         listItem.innerHTML = formatter(item);
@@ -24,12 +24,12 @@ async function loadGenres() {
     const genres = await response.json();
 
     const genreSelect = document.getElementById('genre-select');
-    genreSelect.innerHTML = '<option value="">Selecione o Gênero</option>'; // Adiciona a opção inicial
+    genreSelect.innerHTML = '<option value="">Selecione o Gênero</option>'; 
 
     genres.forEach((genre) => {
       const option = document.createElement('option');
-      option.value = genre.id; // Usa o ID como valor
-      option.textContent = genre.name; // Mostra o nome no dropdown
+      option.value = genre.id; 
+      option.textContent = genre.name; 
       genreSelect.appendChild(option);
     });
   } catch (error) {
@@ -67,6 +67,6 @@ document.getElementById('artist-form').addEventListener('submit', async (e) => {
   }
 });
 
-// Carrega os gêneros e artistas ao iniciar a página
+
 loadGenres();
 loadData('/api/artists', 'artist-list', formatArtist);

@@ -3,7 +3,7 @@ const Genre = require('../models/genre');
 
 module.exports = {
     async getAll(req, res) {
-        const artists = await Artist.findAll({ include: Genre }); // Inclui o gênero associado
+        const artists = await Artist.findAll({ include: Genre }); 
         res.json(artists);
     },
 

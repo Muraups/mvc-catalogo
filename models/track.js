@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../database/db');
-const Album = require('./album'); // Certifique-se de que o caminho está correto
-const Genre = require('./genre'); // Caso seja necessário
+const Album = require('./album'); 
+const Genre = require('./genre'); 
 
 const Track = sequelize.define('Track', {
     title: {
@@ -9,12 +9,11 @@ const Track = sequelize.define('Track', {
         allowNull: false,
     },
     duration: {
-        type: DataTypes.FLOAT, // Duração em minutos (exemplo de tipo float)
+        type: DataTypes.FLOAT, 
     },
 });
 
-// Defina as associações
-Track.belongsTo(Album, { foreignKey: 'album_id' }); // Associa a Faixa com o Álbum
-Album.hasMany(Track); // Um álbum tem várias faixas
+Track.belongsTo(Album, { foreignKey: 'album_id' }); 
+Album.hasMany(Track);
 
 module.exports = Track;

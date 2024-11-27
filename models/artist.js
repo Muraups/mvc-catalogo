@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../database/db');
-const Genre = require('./genre'); // Certifique-se de que o caminho está correto e o modelo está exportado
+const Genre = require('./genre'); 
 
 const Artist = sequelize.define('Artist', {
     name: {
@@ -9,7 +9,6 @@ const Artist = sequelize.define('Artist', {
     },
 });
 
-// Configuração de associações
 Artist.belongsTo(Genre, { foreignKey: 'genre_id' });
 
 module.exports = Artist;

@@ -3,7 +3,7 @@ function loadData(endpoint, listId, formatter) {
       .then((response) => response.json())
       .then((data) => {
         const listElement = document.getElementById(listId);
-        listElement.innerHTML = ''; // Limpa a lista antes de preenchê-la
+        listElement.innerHTML = ''; 
         data.forEach((item) => {
           const listItem = document.createElement('li');
           listItem.innerHTML = formatter(item);
@@ -24,12 +24,12 @@ function loadData(endpoint, listId, formatter) {
       const artists = await response.json();
   
       const artistSelect = document.getElementById('artist-select');
-      artistSelect.innerHTML = '<option value="">Selecione o Artista</option>'; // Adiciona a opção inicial
+      artistSelect.innerHTML = '<option value="">Selecione o Artista</option>'; 
   
       artists.forEach((artist) => {
         const option = document.createElement('option');
-        option.value = artist.id; // Usa o ID como valor
-        option.textContent = artist.name; // Mostra o nome no dropdown
+        option.value = artist.id; 
+        option.textContent = artist.name; 
         artistSelect.appendChild(option);
       });
     } catch (error) {
@@ -67,7 +67,7 @@ function loadData(endpoint, listId, formatter) {
     }
   });
   
-  // Carrega os artistas e álbuns ao iniciar a página
+
   loadArtists();
   loadData('/api/albums', 'album-list', formatAlbum);
   

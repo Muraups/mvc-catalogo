@@ -3,12 +3,12 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const albumRoutes = require('./routes/albumRoutes');
 const trackRoutes = require('./routes/trackRoutes');
-const artistRoutes = require('./routes/artistRoutes'); // Novas rotas de Artist
-const genreRoutes = require('./routes/genreRoutes'); // Novas rotas de Genre
+const artistRoutes = require('./routes/artistRoutes'); 
+const genreRoutes = require('./routes/genreRoutes'); 
 const { Track, Album, Artist } = require('./models');
-const { sequelize } = require('./models/index'); // Importa o Sequelize e associações
+const { sequelize } = require('./models/index'); 
 
-// Cria o app e configura middlewares
+
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
@@ -45,13 +45,13 @@ app.get("/html/artists.html", (req, res) => {
         include: [
           {
             model: Album,
-            include: [Artist], // Inclui o Artista dentro do Álbum
+            include: [Artist],
           },
         ],
       });
   
-      console.log(tracks); // Verifique os dados retornados no console
-      res.json(tracks); // Envia as faixas com a duração e as associações
+      console.log(tracks); 
+      res.json(tracks); 
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Erro ao carregar faixas' });
@@ -63,12 +63,12 @@ app.get("/html/artists.html", (req, res) => {
       const albums = await Album.findAll({
         include: [
           {
-            model: Artist, // Certifique-se de que é o modelo Artist e não Album
-            as: 'Artist', // A associação que você fez com Artist (se necessário)
+            model: Artist, 
+            as: 'Artist', 
           },
         ],
       });
-      res.json(albums); // Envia os álbuns com os dados do artista
+      res.json(albums); 
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Erro ao carregar álbuns' });

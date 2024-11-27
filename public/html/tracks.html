@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Faixas</title>
+  <title>Gerenciar Faixas</title>
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
@@ -17,20 +17,20 @@
   </header>
   
   <main>
-    <!-- Lista de faixas existentes -->
     <section>
       <h2>Lista de Faixas</h2>
       <ul id="track-list"></ul>
     </section>
-    <!-- Formulário para adicionar uma nova faixa -->
     <section>
       <h2>Criar Faixa</h2>
       <form id="track-form">
-        <input type="text" id="track-name" placeholder="Nome da faixa" required />
-        <select id="album-select"></select>
-        <input type="number" id="track-duration" placeholder="Duração (minutos)" min="1" required />
+        <input type="text" id="track-name" placeholder="Nome da Faixa" required>
+        <select id="album-select" required>
+          <option value="">Selecione o Álbum</option>
+        </select>
+        <input type="number" id="track-duration" placeholder="Duração (minutos)" min="1" required>
         <button type="submit">Criar</button>
-      </form>      
+      </form>
     </section>
   </main>
 

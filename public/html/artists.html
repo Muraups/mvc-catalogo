@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Artistas</title>
+  <title>Gerenciar Artistas</title>
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
@@ -17,20 +17,17 @@
   </header>
   
   <main>
-    <!-- Lista de artistas existentes -->
     <section>
       <h2>Lista de Artistas</h2>
       <ul id="artist-list"></ul>
     </section>
-    <!-- Formulário para adicionar um novo artista -->
     <section>
       <h2>Criar Artista</h2>
       <form id="artist-form">
-        <input type="text" id="artist-name" placeholder="Nome do artista" required />
+        <input type="text" id="artist-name" placeholder="Nome do Artista" required>
         <select id="genre-select" required>
           <option value="">Selecione o Gênero</option>
         </select>
-        <!--input type="number" id="genre-id" placeholder="ID do gênero" required -->
         <button type="submit">Criar</button>
       </form>
     </section>

@@ -5,13 +5,13 @@ const trackController = require('../controllers/trackController');
 router.get('/', trackController.getAllTracks);
 router.post('/', async (req, res) => {
     try {
-      const { name, album_id, duration } = req.body; // Incluindo 'duration'
+      const { name, album_id, duration } = req.body; 
       const track = await Track.create({
         name, 
         album_id, 
-        duration, // Duração será salva junto com os outros dados
+        duration, 
       });
-      res.status(201).json(track); // Retorna a faixa criada
+      res.status(201).json(track); 
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Erro ao criar faixa' });

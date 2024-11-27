@@ -3,7 +3,7 @@ function loadData(endpoint, listId, formatter) {
       .then((response) => response.json())
       .then((data) => {
         const listElement = document.getElementById(listId);
-        listElement.innerHTML = ''; // Limpa a lista antes de preenchê-la
+        listElement.innerHTML = ''; 
         data.forEach((item) => {
           const listItem = document.createElement('li');
           listItem.innerHTML = formatter(item);
@@ -41,6 +41,6 @@ function loadData(endpoint, listId, formatter) {
     }
   });
   
-  // Carrega os gêneros ao iniciar a página
+  
   loadData('/api/genres', 'genre-list', formatGenre);
   

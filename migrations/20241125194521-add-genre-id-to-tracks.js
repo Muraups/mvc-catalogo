@@ -7,8 +7,8 @@ module.exports = {
       type: Sequelize.INTEGER,
       allowNull: false,
       references: {
-        model: 'Genres', // Nome da tabela relacionada
-        key: 'id',       // Chave primária da tabela Genres
+        model: 'Genres', 
+        key: 'id',       
       },
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE',

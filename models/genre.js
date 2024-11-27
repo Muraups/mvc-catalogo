@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../database/db');
-const Album = require('./album'); // Importa Genre para a associação
+const Album = require('./album'); 
 
 const Genre = sequelize.define('Genre', {
     name: {

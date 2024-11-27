@@ -3,7 +3,7 @@ function loadData(endpoint, listId, formatter) {
       .then((response) => response.json())
       .then((data) => {
         const listElement = document.getElementById(listId);
-        listElement.innerHTML = ''; // Limpa a lista antes de preenchê-la
+        listElement.innerHTML = ''; 
         data.forEach((item) => {
           const listItem = document.createElement('li');
           listItem.innerHTML = formatter(item);
@@ -20,15 +20,13 @@ function loadData(endpoint, listId, formatter) {
   Duração: ${track.duration ? `${track.duration} minutos` : 'Não informada'})
 `;
 
-  
-
   async function loadAlbums() {
     try {
       const response = await fetch('/api/albums');
       if (!response.ok) throw new Error('Erro ao carregar álbuns');
       const albums = await response.json();
   
-      console.log(albums); // Verifique se os dados estão corretos
+      console.log(albums); 
   
       const albumSelect = document.getElementById('album-select');
       albumSelect.innerHTML = '<option value="">Selecione o Álbum</option>'; 
@@ -49,7 +47,7 @@ function loadData(endpoint, listId, formatter) {
   
     const name = document.getElementById('track-name').value;
     const album_id = document.getElementById('album-select').value;
-    const duration = document.getElementById('track-duration').value; // Captura a duração
+    const duration = document.getElementById('track-duration').value;
   
     if (!album_id || !duration) {
       alert('Por favor, selecione um álbum e insira a duração da faixa.');
@@ -60,12 +58,12 @@ function loadData(endpoint, listId, formatter) {
       const response = await fetch('/api/tracks', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, album_id, duration }), // Envia a duração junto com os dados
+        body: JSON.stringify({ name, album_id, duration }), 
       });
   
       if (response.ok) {
         alert('Faixa criada com sucesso!');
-        loadData('/api/tracks', 'track-list', formatTrack); // Recarrega a lista de faixas
+        loadData('/api/tracks', 'track-list', formatTrack); 
       } else {
         const error = await response.json();
         alert('Erro ao criar faixa: ' + error.message);
@@ -76,7 +74,7 @@ function loadData(endpoint, listId, formatter) {
   });
   
   
-  // Carrega os álbuns e faixas ao iniciar a página
+
   loadAlbums();
   loadData('/api/tracks', 'track-list', formatTrack);
   

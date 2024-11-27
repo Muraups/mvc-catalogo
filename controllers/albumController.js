@@ -24,10 +24,9 @@ exports.createAlbum = async (req, res) => {
         artist_id,
       });
   
-      // Verifica se `genres` foi passado e associa os gêneros ao álbum
       if (genres && genres.length) {
         const genreInstances = await Genre.findAll({
-          where: { id: genres }, // Associa gêneros pelo ID
+          where: { id: genres }, 
         });
         await album.addGenres(genreInstances);
       }

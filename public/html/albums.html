@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Álbuns</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Gerenciar Álbuns</h1>
+    <nav>
+      <a href="/html/artists.html">Artistas</a>
+      <a href="/html/tracks.html">Faixas</a>
+      <a href="/html/genres.html">Gêneros</a>
+    </nav>
+  </header>
+  
+  <main>
+    <!-- Lista de álbuns existentes -->
+    <section>
+      <h2>Lista de Álbuns</h2>
+      <ul id="album-list"></ul>
+    </section>
+    <!-- Formulário para adicionar um novo álbum -->
+    <section>
+      <h2>Criar Álbum</h2>
+      <form id="album-form">
+        <input type="text" id="album-name" placeholder="Nome do álbum" required />
+        <select id="artist-select" required>
+          <option value="">Selecione o Artista</option>
+        </select>
+        <button type="submit">Criar</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="/js/albums.js"></script>
+</body>
+</html>

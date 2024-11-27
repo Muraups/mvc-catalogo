@@ -15,8 +15,8 @@ const Album = sequelize.define('Album', {
         type: DataTypes.TEXT,
     },
 });
+// No modelo Album
+Album.belongsTo(Artist, { foreignKey: 'artist_id', as: 'Artist' });
 
-// Relacionamento: um álbum pertence a um artista
-Album.belongsTo(Artist, { foreignKey: 'artist_id' });
 
 module.exports = Album;

@@ -17,15 +17,22 @@
   </header>
   
   <main>
-    <form id="artistForm">
-      <input type="text" id="name" placeholder="Nome do Artista" required />
-      <input type="text" id="genre" placeholder="Gênero do Artista" required />
-      <button type="submit">Adicionar Artista</button>
-    </form>
-
-    <section id="artistList">
+    <!-- Lista de artistas existentes -->
+    <section>
       <h2>Lista de Artistas</h2>
-      <ul id="artists"></ul>
+      <ul id="artist-list"></ul>
+    </section>
+    <!-- Formulário para adicionar um novo artista -->
+    <section>
+      <h2>Criar Artista</h2>
+      <form id="artist-form">
+        <input type="text" id="artist-name" placeholder="Nome do artista" required />
+        <select id="genre-select" required>
+          <option value="">Selecione o Gênero</option>
+        </select>
+        <!--input type="number" id="genre-id" placeholder="ID do gênero" required -->
+        <button type="submit">Criar</button>
+      </form>
     </section>
   </main>
 

@@ -2,24 +2,24 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #ffffff;
   }
   
   header {
-    background: #333;
-    color: #fff;
+    background: #fff700;
+    color: #000000;
     padding: 1rem;
     text-align: center;
   }
   
   header nav a {
     margin: 0 10px;
-    color: #fff;
+    color: #000000;
     text-decoration: none;
   }
   
   main {
-    padding: 1rem;
+    padding: 2rem;
   }
   
   form {
@@ -34,6 +34,18 @@ body {
   
   ul {
     list-style: none;
-    padding: 0;
+    padding: 0rem;
+    margin: 20px;
   }
   
+  select {
+    width: 300px; 
+    padding: 10px; 
+    border-radius: 5px; 
+    border: 1px solid #8a8a8a; 
+    font-size: 14px; 
+  }
+  
+  option {
+    padding: 5px; 
+  }

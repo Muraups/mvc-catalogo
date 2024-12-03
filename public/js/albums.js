@@ -14,9 +14,16 @@ function loadData(endpoint, listId, formatter) {
   }
   
   const formatAlbum = (album) => `
-  <strong>${album.name || album.title || 'Nome não especificado'}</strong> (Artista: ${album.Artist?.name || 'Não especificado'})
+  <li style="border: 1px solid #ddd; border-radius: 8px; padding: 10px; width: 200px; text-align: center; background-color: #f9f9f9;">
+    <a href="/html/album-details.html?id=${album.id}" style="text-decoration: none; color: inherit;">
+      <img src="${album.cover_image || '/path/to/default/image.jpg'}" alt="${album.title}" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 10px;">
+      <strong>${album.title}</strong>
+      <p>Artista: ${album.Artist?.name || 'Desconhecido'}</p>
+      <p>Ano: ${album.release_year || 'N/A'}</p>
+    </a>
+  </li>
 `;
-  
+
   async function loadArtists() {
     try {
       const response = await fetch('/api/artists');
